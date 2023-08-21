@@ -1,0 +1,17 @@
+{
+  "name": "explore-ethers",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.7.1",
+    "ganache-core": "^2.13.2"
+  }
+}
