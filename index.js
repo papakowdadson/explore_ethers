@@ -7,22 +7,20 @@ const {utils, providers, Wallet } = ethers
 const provider = new providers.Web3Provider(ganacheProvider)
 
 const wallet = new Wallet(PRIVATE_KEY, provider);
+const wall2 = new Wallet(PRIVATE_KEY_2, provider);
 
-const wall2 = new Wallet(PRIVATE_KEY_2, provider)
+// TODO
+/*
+- send a transaction
+- inspect the transaction
+- send multiple transactions
+- inspect the nonce
+- inspect the wallet balances
 
-// wallet.signTransaction({
-//     value: utils.parseEther("1.0"),
-//     to: wall2.address,
-//     gasLimit: 21000,
-// }).then((tx) => {
-//     console.log('tx: ', tx);
-// })
+exercise
+- send to multiple addresses at once
+- inspect the state of each wallet
 
-
-wallet.sendTransaction({
-    value: utils.parseEther("1.0"),
-    to: wall2.address,
-    gasLimit: 21000,
-}, ).then((tx) => {
-    console.log('tx: ', tx);
-})
+exercise
+- find all addresses that have received ether from a specified address
+*/
