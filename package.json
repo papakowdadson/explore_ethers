@@ -1,7 +1,6 @@
 {
   "name": "explore-ethers",
   "version": "1.0.0",
-  "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
@@ -14,5 +13,14 @@
     "ethers": "5.7",
     "ganache-core": "^2.13.2",
     "nodemon": "^3.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mowblox/explore-ethers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mowblox/explore-ethers/issues"
+  },
+  "homepage": "https://github.com/mowblox/explore-ethers#readme",
+  "description": ""
 }

@@ -1,7 +1,7 @@
-import { ethers } from 'ethers'
+import { ethers } from 'ethers';
 import {PRIVATE_KEY, PRIVATE_KEY_2, PRIVATE_KEY_3, ganacheProvider, wall} from './config.js'
 
-const {utils, providers, Wallet } = ethers
+const {utils, providers, Wallet } = ethers;
 
 
 const provider = new providers.Web3Provider(ganacheProvider)
@@ -35,6 +35,15 @@ const wallet3 = new Wallet(PRIVATE_KEY_3, provider);
         wallet2.address,
         wallet3.address,
     ]);
+    await payroll(0.3, wallet1, [
+        wallet2.address,
+        wallet3.address,
+    ]);
+    await payroll(0.3, wallet1, [
+        wallet2.address,
+        wallet3.address,
+    ]);
+
 
     console.log("after balance wallet1: ", utils.formatEther(await wallet1.getBalance()))
     console.log("after balance wallet2: ", utils.formatEther(await wallet2.getBalance()))
@@ -91,9 +100,27 @@ async function  payroll(amount, sender, employees) {
     } 
 }
 
-
-// function findAddresses(address) return list of addresses
+async function findAddresses(address){
+    // function findAddresses(address) return list of addresses
 // provider.getBlockNumber()
 // provider.getBlockWithTransactions(integer) returns an array of transactions
 
 // test with at least 5 addresses
+let blockNumber = await provider.getBlockNumber();
+const addresses = [];
+while( blockNumber > 0 ){
+    const blockWithTransactions = await provider.getBlockWithTransactions(blockNumber);
+    const transactions = blockWithTransactions.transactions;
+    transactions.forEach((transaction)=>{
+        if(transaction.from === address){
+            addresses.push(transaction.to)
+        }
+    })
+    blockNumber--;
+}
+return addresses;
+
+
+}
+
+console.log('List of addresses who recieved money from walllet 1',findAddresses(wallet1.address));
