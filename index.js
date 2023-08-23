@@ -48,6 +48,8 @@ const wallet3 = new Wallet(PRIVATE_KEY_3, provider);
     console.log("after balance wallet1: ", utils.formatEther(await wallet1.getBalance()))
     console.log("after balance wallet2: ", utils.formatEther(await wallet2.getBalance()))
     console.log("after balance wallet3: ", utils.formatEther(await wallet3.getBalance()))
+    console.log('List of addresses who recieved money from walllet 1',await findAddresses(wallet1.address));
+
 })();
 
 // TODO
@@ -68,6 +70,7 @@ assignment
 */
 
 async function  payroll(amount, sender, employees) {
+    console.log(sender.address)
     const GAS = 50 // in WEI
     // check that amount is greater than zero *
     // check that employees list has atleast one employee *
@@ -101,19 +104,16 @@ async function  payroll(amount, sender, employees) {
 }
 
 async function findAddresses(address){
-    // function findAddresses(address) return list of addresses
-// provider.getBlockNumber()
-// provider.getBlockWithTransactions(integer) returns an array of transactions
-
-// test with at least 5 addresses
+    console.log('finding addresses')
 let blockNumber = await provider.getBlockNumber();
 const addresses = [];
 while( blockNumber > 0 ){
     const blockWithTransactions = await provider.getBlockWithTransactions(blockNumber);
     const transactions = blockWithTransactions.transactions;
+    console.log('transactions',transactions)
     transactions.forEach((transaction)=>{
         if(transaction.from === address){
-            addresses.push(transaction.to)
+            addresses.push(transaction.to);
         }
     })
     blockNumber--;
@@ -123,4 +123,3 @@ return addresses;
 
 }
 
-console.log('List of addresses who recieved money from walllet 1',findAddresses(wallet1.address));
